@@ -1,0 +1,25 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "gallery": {
+      "root": "gallery",
+      "framework": "astro"
+    },
+    "mcp": {
+      "root": "mcp-server",
+      "entrypoint": "src/server.ts",
+      "functions": {
+        "src/server.ts": {
+          "includeFiles": "../data/**,../docs/character-card.md",
+          "maxDuration": 30
+        }
+      }
+    }
+  },
+  "rewrites": [
+    { "source": "/mcp/health", "destination": { "service": "mcp" } },
+    { "source": "/mcp", "destination": { "service": "mcp" } },
+    { "source": "/mcp/(.*)", "destination": { "service": "mcp" } },
+    { "source": "/(.*)", "destination": { "service": "gallery" } }
+  ]
+}

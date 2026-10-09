@@ -1,0 +1,42 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  gallery:
+    name: Build gallery
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: gallery/package-lock.json
+      - name: Install
+        working-directory: gallery
+        run: npm ci
+      - name: Build static site
+        working-directory: gallery
+        env:
+          ASTRO_TELEMETRY_DISABLED: 1
+        run: npm run build
+
+  mcp:
+    name: Typecheck MCP server
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: mcp-server/package-lock.json
+      - name: Install
+        working-directory: mcp-server
+        run: npm ci
+      - name: Typecheck
+        working-directory: mcp-server
+        run: npm run typecheck
