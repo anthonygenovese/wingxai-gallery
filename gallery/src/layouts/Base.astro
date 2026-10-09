@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const fullTitle = title === 'WingXAI' ? 'WingXAI · Prototype Frame' : `${title} · WingXAI`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+    <div class="status-strip">
+      <p>Preview scaffold. wingxai.gallery is not pointed here yet. The MCP endpoint is not live.</p>
+    </div>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/">
+          <img src="/favicon.svg" width="36" height="36" alt="" />
+          <span>
+            <strong>WINGXAI</strong>
+            <span>Prototype Frame</span>
+          </span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="/">Gallery</a>
+          <a href="/card">Character card</a>
+          <a href="/merch">Merch</a>
+        </nav>
+      </div>
+    </header>
+    <main id="content" class="shell">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>Original placeholder frames. No real pilots, companies, seals, or franchise designs.</p>
+        <p>WX unit codes on this site are scaffold samples.</p>
+      </div>
+    </footer>
+  </body>
+</html>

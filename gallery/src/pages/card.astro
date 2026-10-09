@@ -1,0 +1,19 @@
+---
+import { marked } from 'marked';
+import cardMarkdown from '../../../docs/character-card.md?raw';
+import Base from '../layouts/Base.astro';
+
+const html = await marked.parse(cardMarkdown);
+---
+
+<Base
+  title="Character card"
+  description="WingXAI style card version 0.4. Visual DNA, frame card layout, and generation rules."
+>
+  <p class="kicker">Reference</p>
+  <h1 class="page-title">Character card</h1>
+  <p class="lede">
+    Rendered from <code>docs/character-card.md</code>. That file is the source of truth. This page does not rewrite it.
+  </p>
+  <article class="card-doc" set:html={html} />
+</Base>

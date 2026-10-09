@@ -1,0 +1,48 @@
+---
+import FrameCard from '../../components/FrameCard.astro';
+import Base from '../../layouts/Base.astro';
+import { getMonster, listMonsters, negativePrompt } from '../../lib/monsters';
+
+export function getStaticPaths() {
+  return listMonsters().map((monster) => ({
+    params: { id: monster.id },
+  }));
+}
+
+const monster = getMonster(Astro.params.id);
+if (!monster) {
+  throw new Error(`Missing frame for ${Astro.params.id}`);
+}
+const card = monster.frame_card;
+---
+
+<Base title={card.name} description={`${card.unit_code} ${card.name}. ${card.role}. Fictional Prototype Frame.`}>
+  <p class="kicker"><a href="/">Gallery</a> / {card.unit_code}</p>
+  <div class="dossier-layout">
+    <FrameCard monster={monster} />
+    <aside class="panel">
+      <h2>Frame data</h2>
+      <p class="quiet">{monster.credit_line}</p>
+      <div class="tags">
+        {monster.style_tags.map((tag) => <span class="chip">{tag}</span>)}
+      </div>
+      <div class="swatches" aria-label="Palette">
+        {
+          Object.entries(monster.palette).map(([name, hex]) => (
+            <span class="swatch">
+              <b style={`background:${hex}`} />
+              {name} {hex}
+            </span>
+          ))
+        }
+      </div>
+      <h2>Prompt</h2>
+      <p class="prompt">{monster.prompt}</p>
+      <details>
+        <summary>Negative prompt</summary>
+        <p class="prompt">{negativePrompt()}</p>
+      </details>
+      <p class="quiet">Image files are committed SVG placeholders, not final renders.</p>
+    </aside>
+  </div>
+</Base>

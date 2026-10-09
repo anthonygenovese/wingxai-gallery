@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import { listMonsters } from '../lib/monsters';
+
+const monsters = listMonsters();
+---
+
+<Base
+  title="WingXAI"
+  description="WingXAI Prototype Frame gallery. Original carbon-armored robot monsters with crest and seam lighting."
+>
+  <section class="hero">
+    <p class="kicker">Prototype Frame</p>
+    <h1>Gallery</h1>
+    <p class="lede">
+      Original frames in carbon and parade armor, with blade-feather wings, a brass eagle crest, and red or green seam light.
+      These five units are placeholders.
+    </p>
+  </section>
+  {
+    monsters.length === 0 ? (
+      <p class="empty">No frames are in the catalog yet.</p>
+    ) : (
+      <div class="grid">
+        {monsters.map((monster) => {
+          const lights = monster.light === 'red-green' ? ['green', 'red'] : [monster.light];
+          return (
+            <a class="tile" href={`/m/${monster.id}`}>
+              <img
+                src={monster.image_urls.thumb}
+                width={monster.image_size.figure.width}
+                height={monster.image_size.figure.height}
+                alt=""
+              />
+              <div class="tile-body">
+                <p class="unit">{monster.frame_card.unit_code}</p>
+                <h2>{monster.title}</h2>
+                <p class="quiet">{monster.frame_card.class}</p>
+                <div class="meta">
+                  <span class="chip">{monster.scheme}</span>
+                  <span class="chip">
+                    {lights.map((light) => (
+                      <i class={`pip ${light}`} />
+                    ))}
+                    {monster.light}
+                  </span>
+                </div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    )
+  }
+</Base>

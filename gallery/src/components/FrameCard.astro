@@ -1,0 +1,64 @@
+---
+import type { Monster } from '../lib/monsters';
+
+interface Props {
+  monster: Monster;
+}
+
+const { monster } = Astro.props;
+const card = monster.frame_card;
+const lights = monster.light === 'red-green' ? ['green', 'red'] : [monster.light];
+const bars = Array.from({ length: 28 }, (_, index) => {
+  const code = card.unit_code.charCodeAt(index % card.unit_code.length) + index * 13;
+  return 16 + (code % 26);
+});
+---
+
+<article class="dossier">
+  <header>
+    <span>WINGXAI · PROTOTYPE FRAME</span>
+    <span class="unit">{card.unit_code}</span>
+  </header>
+  <img
+    class="hero-figure"
+    src={monster.image_urls.full_no_card}
+    width={monster.image_size.figure.width}
+    height={monster.image_size.figure.height}
+    alt={`Placeholder silhouette of ${card.name}, unit ${card.unit_code}, an original winged frame.`}
+  />
+  <div class="dossier-copy">
+    <dl class="fields">
+      <dt>Name</dt>
+      <dd>{card.name}</dd>
+      <dt>Pilot</dt>
+      <dd>{card.pilot}</dd>
+      <dt>Role</dt>
+      <dd>{card.role}</dd>
+      <dt>Handle</dt>
+      <dd>{card.handle}</dd>
+      <dt>Unit code</dt>
+      <dd>{card.unit_code}</dd>
+      <dt>Class</dt>
+      <dd>{card.class}</dd>
+      <dt>Affiliation</dt>
+      <dd>{card.affiliation}</dd>
+    </dl>
+    <blockquote class="quote">{card.quote}</blockquote>
+    <ul class="systems">
+      {
+        card.systems.map((system) => (
+          <li>
+            {system.status === 'ok' ? '☑' : '☐'} {system.name}
+          </li>
+        ))
+      }
+    </ul>
+    <div class="footer-row">
+      <span class="unit">{card.unit_code}</span>
+      <div class="barcode" aria-hidden="true" title="Decorative barcode">
+        {bars.map((height) => <i style={`height:${height}px`} />)}
+      </div>
+    </div>
+    <p class="quiet">Lights: {lights.join(' / ')} · Scheme: {monster.scheme}</p>
+  </div>
+</article>
