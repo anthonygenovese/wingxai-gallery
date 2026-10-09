@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="960" viewBox="0 0 960 960" role="img">
+  <title>WX-12 Cinder Vault placeholder</title>
+  <desc>Original WingXAI geometric placeholder. Carbon or parade plating, blade-feather wings, LED seams, and a hex eagle crest. Not a seal and not a franchise design.</desc>
+  <rect width="100%" height="100%" fill="#0C0E11"/>
+  <pattern id="twill" width="10" height="10" patternUnits="userSpaceOnUse">
+    <path d="M0 10 L10 0" stroke="#3A3F45" stroke-width="1" opacity="0.45"/>
+  </pattern>
+  <rect width="100%" height="100%" fill="url(#twill)" opacity="0.35"/>
+  
+    <polygon points="394,319 194.0,292.5 394,341 412,330" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="394" y1="330" x2="194.0" y2="292.5" stroke="#FF1E2D" stroke-width="2" stroke-linecap="square"/>
+<polygon points="394,366 158.0,358.5 394,390 412,378" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="394" y1="378" x2="158.0" y2="358.5" stroke="#FF1E2D" stroke-width="2" stroke-linecap="square"/>
+<polygon points="394,415 144.0,424.0 394,437 412,426" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="394" y1="426" x2="144.0" y2="424.0" stroke="#FF1E2D" stroke-width="2" stroke-linecap="square"/>
+<polygon points="394,462 166.0,489.5 394,486 412,474" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="394" y1="474" x2="166.0" y2="489.5" stroke="#FF1E2D" stroke-width="2" stroke-linecap="square"/>
+<polygon points="394,511 204.0,552.0 394,533 412,522" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="394" y1="522" x2="204.0" y2="552.0" stroke="#FF1E2D" stroke-width="2" stroke-linecap="square"/>
+<polygon points="566,319 766.0,292.5 566,341 548,330" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="566" y1="330" x2="766.0" y2="292.5" stroke="#FF1E2D" stroke-width="2" stroke-linecap="square"/>
+<polygon points="566,366 802.0,358.5 566,390 548,378" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="566" y1="378" x2="802.0" y2="358.5" stroke="#FF1E2D" stroke-width="2" stroke-linecap="square"/>
+<polygon points="566,415 816.0,424.0 566,437 548,426" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="566" y1="426" x2="816.0" y2="424.0" stroke="#FF1E2D" stroke-width="2" stroke-linecap="square"/>
+<polygon points="566,462 794.0,489.5 566,486 548,474" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="566" y1="474" x2="794.0" y2="489.5" stroke="#FF1E2D" stroke-width="2" stroke-linecap="square"/>
+<polygon points="566,511 756.0,552.0 566,533 548,522" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="566" y1="522" x2="756.0" y2="552.0" stroke="#FF1E2D" stroke-width="2" stroke-linecap="square"/>
+    <polygon points="319.84,318 363.84,292 355.84,430 301.84,454" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+    <polygon points="640.1600000000001,318 596.1600000000001,292 604.1600000000001,430 658.1600000000001,454" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+    <polygon points="347.84,300 612.1600000000001,300 567.36,620 392.64,620" fill="#3A3F45" stroke="#C9A227" stroke-width="2"/>
+    <polygon points="402.64,470 557.36,470 549.36,600 410.64,600" fill="#16181B" opacity="0.55"/>
+    <line x1="371.84" y1="360" x2="588.1600000000001" y2="360" stroke="#FF1E2D" stroke-width="3"/>
+    <line x1="408.64" y1="560" x2="551.36" y2="560" stroke="#FF1E2D" stroke-width="3"/>
+    <line x1="480" y1="318" x2="480" y2="600" stroke="#0C0E11" stroke-width="2" opacity="0.7"/>
+    
+    <polygon points="480.0,393.0 533.7,424.0 533.7,486.0 480.0,517.0 426.3,486.0 426.3,424.0" fill="#16181B" stroke="#C9A227" stroke-width="3"/>
+    <polygon points="480.0,406.6 521.9,430.8 521.9,479.2 480.0,503.4 438.1,479.2 438.1,430.8" fill="none" stroke="#7A5C1E" stroke-width="2"/>
+    
+    <polygon points="474.5,447.8 425.3,456.9 450.8,471.5 476.4,464.2" fill="#C9A227"/>
+    <polygon points="485.5,447.8 534.7,456.9 509.2,471.5 483.6,464.2" fill="#C9A227"/>
+    <polygon points="480.0,436.8 490.9,462.4 480.0,491.5 469.1,462.4" fill="#7A5C1E"/>
+    <polygon points="480.0,429.5 487.3,444.1 472.7,444.1" fill="#C9A227"/>
+  
+  
+    <polygon points="434,188 526,188 538,250 514,292 446,292 422,250" fill="#3A3F45" stroke="#C9A227" stroke-width="2"/>
+    <rect x="444" y="226" width="72" height="8" fill="#FF1E2D"/>
+    
+    <rect x="339.84" y="430" width="34" height="150" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+    <rect x="586.1600000000001" y="430" width="34" height="150" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+    <polygon points="345.48,620 458.76,620 450.76,900 329.48,900" fill="#3A3F45" stroke="#C9A227" stroke-width="2"/>
+    <polygon points="501.24,620 614.52,620 630.52,900 509.24,900" fill="#3A3F45" stroke="#C9A227" stroke-width="2"/>
+    <rect x="353.48" y="700" width="16" height="4" fill="#FF1E2D"/>
+    <text x="480" y="940" text-anchor="middle" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="22" letter-spacing="3">WX-12</text>
+  
+</svg>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="960" viewBox="0 0 640 960" role="img">
+  <title>WX-01 Ash Ladder placeholder</title>
+  <desc>Original WingXAI geometric placeholder. Carbon or parade plating, blade-feather wings, LED seams, and a hex eagle crest. Not a seal and not a franchise design.</desc>
+  <rect width="100%" height="100%" fill="#0C0E11"/>
+  <pattern id="twill" width="10" height="10" patternUnits="userSpaceOnUse">
+    <path d="M0 10 L10 0" stroke="#3A3F45" stroke-width="1" opacity="0.45"/>
+  </pattern>
+  <rect width="100%" height="100%" fill="url(#twill)" opacity="0.35"/>
+  
+    <polygon points="234,319 50.0,192.0 234,341 252,330" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="234" y1="330" x2="50.0" y2="192.0" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="234,366 16.9,306.2 234,390 252,378" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="234" y1="378" x2="16.9" y2="306.2" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="234,415 16.0,418.6 234,437 252,426" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="234" y1="426" x2="16.0" y2="418.6" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="234,462 24.2,531.0 234,486 252,474" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="234" y1="474" x2="24.2" y2="531.0" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="234,511 59.2,632.4 234,533 252,522" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="234" y1="522" x2="59.2" y2="632.4" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="406,319 590.0,192.0 406,341 388,330" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="406" y1="330" x2="590.0" y2="192.0" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="406,366 623.1,306.2 406,390 388,378" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="406" y1="378" x2="623.1" y2="306.2" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="406,415 624.0,418.6 406,437 388,426" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="406" y1="426" x2="624.0" y2="418.6" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="406,462 615.8,531.0 406,486 388,474" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="406" y1="474" x2="615.8" y2="531.0" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="406,511 580.8,632.4 406,533 388,522" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="406" y1="522" x2="580.8" y2="632.4" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+    <polygon points="174,318 218,292 210,430 156,454" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+    <polygon points="466,318 422,292 430,430 484,454" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+    <polygon points="202,300 438,300 398,620 242,620" fill="#3A3F45" stroke="#C9A227" stroke-width="2"/>
+    <polygon points="252,470 388,470 380,600 260,600" fill="#16181B" opacity="0.55"/>
+    <line x1="226" y1="360" x2="414" y2="360" stroke="#FF1E2D" stroke-width="3"/>
+    <line x1="258" y1="560" x2="382" y2="560" stroke="#FF1E2D" stroke-width="3"/>
+    <line x1="320" y1="318" x2="320" y2="600" stroke="#0C0E11" stroke-width="2" opacity="0.7"/>
+    
+    <polygon points="320.0,393.0 373.7,424.0 373.7,486.0 320.0,517.0 266.3,486.0 266.3,424.0" fill="#16181B" stroke="#C9A227" stroke-width="3"/>
+    <polygon points="320.0,406.6 361.9,430.8 361.9,479.2 320.0,503.4 278.1,479.2 278.1,430.8" fill="none" stroke="#7A5C1E" stroke-width="2"/>
+    
+    <polygon points="314.5,447.8 265.3,456.9 290.8,471.5 316.4,464.2" fill="#C9A227"/>
+    <polygon points="325.5,447.8 374.7,456.9 349.2,471.5 323.6,464.2" fill="#C9A227"/>
+    <polygon points="320.0,436.8 330.9,462.4 320.0,491.5 309.1,462.4" fill="#7A5C1E"/>
+    <polygon points="320.0,429.5 327.3,444.1 312.7,444.1" fill="#C9A227"/>
+  
+  
+    <polygon points="274,188 366,188 378,250 354,292 286,292 262,250" fill="#3A3F45" stroke="#C9A227" stroke-width="2"/>
+    <rect x="284" y="226" width="72" height="8" fill="#FF1E2D"/>
+    
+    <rect x="194" y="430" width="34" height="150" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+    <rect x="412" y="430" width="34" height="150" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+    <polygon points="206,620 302,620 294,900 190,900" fill="#3A3F45" stroke="#C9A227" stroke-width="2"/>
+    <polygon points="338,620 434,620 450,900 346,900" fill="#3A3F45" stroke="#C9A227" stroke-width="2"/>
+    <rect x="214" y="700" width="16" height="4" fill="#FF1E2D"/>
+    <text x="320" y="940" text-anchor="middle" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="22" letter-spacing="3">WX-01</text>
+  
+</svg>

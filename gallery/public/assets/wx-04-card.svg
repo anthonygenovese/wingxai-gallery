@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200" role="img">
+  <title>WX-04 frame card placeholder</title>
+  <desc>Original WingXAI dossier card for Green Meridian. Decorative barcode. Fictional pilot and affiliation.</desc>
+  <!-- Decorative barcode. It does not encode a URL or an official identifier. -->
+  <rect width="100%" height="100%" fill="#0C0E11"/>
+  <rect x="16" y="16" width="768" height="1168" fill="none" stroke="#C9A227" stroke-width="2"/>
+  <text x="40" y="58" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="20" letter-spacing="3">WINGXAI · PROTOTYPE FRAME</text>
+  <line x1="40" y1="74" x2="760" y2="74" stroke="#2BFF6A" stroke-width="2"/>
+  <svg x="50" y="92" width="700" height="500" viewBox="0 0 640 960" preserveAspectRatio="xMidYMid meet">
+    
+    <polygon points="234,319 94.0,198.8 234,341 252,330" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="234" y1="330" x2="94.0" y2="198.8" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="234,366 68.8,309.8 234,390 252,378" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="234" y1="378" x2="68.8" y2="309.8" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="234,415 59.0,419.0 234,437 252,426" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="234" y1="426" x2="59.0" y2="419.0" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="234,462 74.4,528.3 234,486 252,474" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="234" y1="474" x2="74.4" y2="528.3" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="234,511 101.0,627.0 234,533 252,522" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="234" y1="522" x2="101.0" y2="627.0" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="406,319 546.0,198.8 406,341 388,330" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="406" y1="330" x2="546.0" y2="198.8" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="406,366 571.2,309.8 406,390 388,378" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="406" y1="378" x2="571.2" y2="309.8" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="406,415 581.0,419.0 406,437 388,426" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="406" y1="426" x2="581.0" y2="419.0" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="406,462 565.6,528.3 406,486 388,474" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="406" y1="474" x2="565.6" y2="528.3" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+<polygon points="406,511 539.0,627.0 406,533 388,522" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+<line x1="406" y1="522" x2="539.0" y2="627.0" stroke="#2BFF6A" stroke-width="2" stroke-linecap="square"/>
+    <polygon points="188.16,318 232.16,292 224.16,430 170.16,454" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+    <polygon points="451.84000000000003,318 407.84000000000003,292 415.84000000000003,430 469.84000000000003,454" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+    <polygon points="216.16,300 423.84000000000003,300 388.64,620 251.36,620" fill="#3A3F45" stroke="#C9A227" stroke-width="2"/>
+    <polygon points="261.36,470 378.64,470 370.64,600 269.36,600" fill="#16181B" opacity="0.55"/>
+    <line x1="240.16" y1="360" x2="399.84000000000003" y2="360" stroke="#2BFF6A" stroke-width="3"/>
+    <line x1="267.36" y1="560" x2="372.64" y2="560" stroke="#2BFF6A" stroke-width="3"/>
+    <line x1="320" y1="318" x2="320" y2="600" stroke="#0C0E11" stroke-width="2" opacity="0.7"/>
+    
+    <polygon points="320.0,393.0 373.7,424.0 373.7,486.0 320.0,517.0 266.3,486.0 266.3,424.0" fill="#16181B" stroke="#C9A227" stroke-width="3"/>
+    <polygon points="320.0,406.6 361.9,430.8 361.9,479.2 320.0,503.4 278.1,479.2 278.1,430.8" fill="none" stroke="#7A5C1E" stroke-width="2"/>
+    
+    <polygon points="314.5,447.8 265.3,456.9 290.8,471.5 316.4,464.2" fill="#C9A227"/>
+    <polygon points="325.5,447.8 374.7,456.9 349.2,471.5 323.6,464.2" fill="#C9A227"/>
+    <polygon points="320.0,436.8 330.9,462.4 320.0,491.5 309.1,462.4" fill="#7A5C1E"/>
+    <polygon points="320.0,429.5 327.3,444.1 312.7,444.1" fill="#C9A227"/>
+  
+  
+    <polygon points="274,188 366,188 378,250 354,292 286,292 262,250" fill="#3A3F45" stroke="#C9A227" stroke-width="2"/>
+    <rect x="284" y="226" width="72" height="8" fill="#2BFF6A"/>
+    <polygon points="312,168 328,168 325,118 315,118" fill="#3A3F45" stroke="#C9A227" stroke-width="2"/>
+    <rect x="208.16" y="430" width="34" height="150" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+    <rect x="397.84000000000003" y="430" width="34" height="150" fill="#16181B" stroke="#3A3F45" stroke-width="2"/>
+    <polygon points="226.52,620 305.24,620 297.24,900 210.52,900" fill="#3A3F45" stroke="#C9A227" stroke-width="2"/>
+    <polygon points="334.76,620 413.48,620 429.48,900 342.76,900" fill="#3A3F45" stroke="#C9A227" stroke-width="2"/>
+    <rect x="234.52" y="700" width="16" height="4" fill="#2BFF6A"/>
+    <text x="320" y="940" text-anchor="middle" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="22" letter-spacing="3">WX-04</text>
+  
+  </svg>
+  
+        <text x="48" y="640" fill="#C9A227" font-family="ui-monospace, monospace" font-size="14" letter-spacing="2">NAME</text>
+        <text x="230" y="640" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="20">Green Meridian</text>
+      
+
+        <text x="48" y="682" fill="#C9A227" font-family="ui-monospace, monospace" font-size="14" letter-spacing="2">PILOT</text>
+        <text x="230" y="682" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="20">HALYARD</text>
+      
+
+        <text x="48" y="724" fill="#C9A227" font-family="ui-monospace, monospace" font-size="14" letter-spacing="2">ROLE</text>
+        <text x="230" y="724" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="20">Night Guardian</text>
+      
+
+        <text x="48" y="766" fill="#C9A227" font-family="ui-monospace, monospace" font-size="14" letter-spacing="2">HANDLE</text>
+        <text x="230" y="766" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="20">@wx_meridian</text>
+      
+
+        <text x="48" y="808" fill="#C9A227" font-family="ui-monospace, monospace" font-size="14" letter-spacing="2">UNIT CODE</text>
+        <text x="230" y="808" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="20">WX-04</text>
+      
+
+        <text x="48" y="850" fill="#C9A227" font-family="ui-monospace, monospace" font-size="14" letter-spacing="2">CLASS</text>
+        <text x="230" y="850" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="20">Ward Frame</text>
+      
+
+        <text x="48" y="892" fill="#C9A227" font-family="ui-monospace, monospace" font-size="14" letter-spacing="2">AFFILIATION</text>
+        <text x="230" y="892" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="20">Meridian Test Cohort</text>
+      
+  <rect x="40" y="916" width="720" height="78" fill="none" stroke="#2BFF6A" stroke-width="1"/>
+  <text x="56" y="962" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="18">The weave keeps the watch the visor will not blink.</text>
+  <text x="48" y="1048" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="18">☑ ARMOR</text>
+<text x="228" y="1048" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="18">☑ WINGS</text>
+<text x="408" y="1048" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="18">☑ OPTICS</text>
+<text x="588" y="1048" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="18">☑ CREST</text>
+  <text x="400" y="1124" fill="#E8E8E8" font-family="ui-monospace, monospace" font-size="18" letter-spacing="2">WX-04</text>
+  <rect x="48" y="1097" width="5" height="51" fill="#E8E8E8"/>
+<rect x="55" y="1097" width="3" height="51" fill="#E8E8E8"/>
+<rect x="60" y="1105" width="5" height="43" fill="#E8E8E8"/>
+<rect x="67" y="1103" width="5" height="45" fill="#E8E8E8"/>
+<rect x="74" y="1100" width="2" height="48" fill="#E8E8E8"/>
+<rect x="78" y="1102" width="2" height="46" fill="#E8E8E8"/>
+<rect x="82" y="1102" width="4" height="46" fill="#E8E8E8"/>
+<rect x="88" y="1110" width="2" height="38" fill="#E8E8E8"/>
+<rect x="92" y="1108" width="2" height="40" fill="#E8E8E8"/>
+<rect x="96" y="1105" width="3" height="43" fill="#E8E8E8"/>
+<rect x="101" y="1107" width="3" height="41" fill="#E8E8E8"/>
+<rect x="106" y="1107" width="5" height="41" fill="#E8E8E8"/>
+<rect x="113" y="1097" width="3" height="51" fill="#E8E8E8"/>
+<rect x="118" y="1095" width="3" height="53" fill="#E8E8E8"/>
+<rect x="123" y="1110" width="4" height="38" fill="#E8E8E8"/>
+<rect x="129" y="1112" width="4" height="36" fill="#E8E8E8"/>
+<rect x="135" y="1112" width="2" height="36" fill="#E8E8E8"/>
+<rect x="139" y="1102" width="4" height="46" fill="#E8E8E8"/>
+<rect x="145" y="1100" width="4" height="48" fill="#E8E8E8"/>
+<rect x="151" y="1097" width="5" height="51" fill="#E8E8E8"/>
+<rect x="158" y="1099" width="5" height="49" fill="#E8E8E8"/>
+<rect x="165" y="1099" width="3" height="49" fill="#E8E8E8"/>
+<rect x="170" y="1107" width="5" height="41" fill="#E8E8E8"/>
+<rect x="177" y="1105" width="5" height="43" fill="#E8E8E8"/>
+<rect x="184" y="1102" width="2" height="46" fill="#E8E8E8"/>
+<rect x="188" y="1104" width="2" height="44" fill="#E8E8E8"/>
+<rect x="192" y="1104" width="4" height="44" fill="#E8E8E8"/>
+<rect x="198" y="1112" width="2" height="36" fill="#E8E8E8"/>
+<rect x="202" y="1110" width="2" height="38" fill="#E8E8E8"/>
+<rect x="206" y="1107" width="3" height="41" fill="#E8E8E8"/>
+<rect x="211" y="1109" width="3" height="39" fill="#E8E8E8"/>
+<rect x="216" y="1109" width="5" height="39" fill="#E8E8E8"/>
+<rect x="223" y="1099" width="3" height="49" fill="#E8E8E8"/>
+<rect x="228" y="1097" width="3" height="51" fill="#E8E8E8"/>
+<rect x="233" y="1112" width="4" height="36" fill="#E8E8E8"/>
+<rect x="239" y="1096" width="4" height="52" fill="#E8E8E8"/>
+<rect x="245" y="1096" width="2" height="52" fill="#E8E8E8"/>
+<rect x="249" y="1104" width="4" height="44" fill="#E8E8E8"/>
+<rect x="255" y="1102" width="4" height="46" fill="#E8E8E8"/>
+<rect x="261" y="1099" width="5" height="49" fill="#E8E8E8"/>
+<rect x="268" y="1101" width="5" height="47" fill="#E8E8E8"/>
+<rect x="275" y="1101" width="3" height="47" fill="#E8E8E8"/>
+<rect x="280" y="1109" width="5" height="39" fill="#E8E8E8"/>
+<rect x="287" y="1107" width="5" height="41" fill="#E8E8E8"/>
+<rect x="294" y="1104" width="2" height="44" fill="#E8E8E8"/>
+<rect x="298" y="1106" width="2" height="42" fill="#E8E8E8"/>
+</svg>
