@@ -1,0 +1,14 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "method": "tools/call",
+  "params": {
+    "name": "get_monster_asset",
+    "arguments": {
+      "id": "WX-01",
+      "size": "full",
+      "format": "png",
+      "card": false
+    }
+  }
+}
