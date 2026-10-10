@@ -1,7 +1,7 @@
 # WingXAI Style Card: Prototype Frame Robot Monsters
 
 **Brand:** WingXAI · **Gallery:** https://wingxai.gallery · **MCP endpoint (planned):** https://wingxai.gallery/mcp
-**Card version:** 0.5 (draft, original style language) · **Last updated:** 2026-10-10 · **Owner:** @________
+**Card version:** 0.6 (draft, original style language) · **Last updated:** 2026-10-10 · **Owner:** @________
 
 > How to use this card: this card defines an **original style language**, not any existing character. The reference images were a mood board (section 1.0). No frame made with this card may depict, name, or be credited to a real person, and none may reproduce a copyrighted character design or a real seal. Everything in `[brackets]` is still undecided. Hex values marked *approx.* are close matches to the mood board; confirm them with an eyedropper. The test: a stranger reads only this card, generates one original frame, and it still looks like it belongs in the family.
 
@@ -165,9 +165,9 @@ pristine prototype finish, cinematic, [rendering style]
 
 **Frame card add-on:** `presented on a sci-fi dossier card, "WINGXAI · PROTOTYPE FRAME" header, fictional name and callsign fields, unit code "WX-[##]", class field, quote box, systems checklist, barcode footer`
 
-**Negative prompt:** `real person, real politician, celebrity, public figure likeness, real name, real social media handle, real company logo, brand logo, official seal, presidential seal, great seal of the united states, government insignia, gundam, mobile suit gundam, wing zero, existing anime character, franchise logo, copied character design, cyan or blue lights, rust, salvaged scrap, cute toy, plastic, organic flesh, rainbow colors, cluttered background, tiny unreadable text, watermark`
+**Negative prompt:** `real person, real politician, celebrity, public figure likeness, real name, real social media handle, real company logo, brand logo, official seal, presidential seal, great seal of the united states, government insignia, gundam, mobile suit gundam, wing zero, deathscythe, shenlong, existing anime character, franchise logo, copied character design, tesla, spacex, starlink, falcon 9, starship, real company name, real product name, cyan or blue lights, rust, salvaged scrap, cute toy, plastic, organic flesh, rainbow colors, cluttered background, tiny unreadable text, watermark`
 
-> Franchise names appear in the negative prompt only, to steer away from them. Never put them in a positive prompt.
+> Franchise names and real company names appear in the negative prompt only, to steer away from them. Never put them in a positive prompt. The company-name list is not exhaustive — it covers the names that have already appeared in ingested posts and rejected prototypes (RP-01). Add any new real company or product name that surfaces in a post before mapping.
 
 ---
 
@@ -262,6 +262,30 @@ Place the generated frame next to the kit photo it drew from. If a stranger woul
 **The family signatures that no kit has**
 
 A frame is WingXAI, not a kit, when it carries all three: carbon fiber weave texture, red or green LED strips, and an original gold crest. Any one of those alone is not enough. All three together, plus original head, wing, and chest designs, is the whole test.
+
+---
+
+## 5.2 Brand-name scanner (required for the reply bot)
+
+The reply bot ingests posts that frequently mention real companies, products, and franchises. A frame that echoes a post's substance while carrying that post's real brand name reads as **endorsement** — trademark dilution and false association, not just copyright. This is the single highest-risk failure mode for the bot, and it is caught at ingest, before mapping.
+
+**The rule:** before any post is mapped, the ingest stage runs a brand-name scan. If the post contains a real company name, product name, franchise name, or real person's name, the bot does not render a frame referencing that name. It either maps the post's *topic* to fictional values, or it skips the post entirely.
+
+**What the scanner catches**
+
+- Real company names: Tesla, SpaceX, Starlink, Falcon, Starship, and any other company that appears in an ingested post.
+- Real product and service names: Starlink V3, Starship, any named product or service.
+- Franchise and character names: Gundam, Wing Zero, Deathscythe, Shenlong, and any other existing mecha or anime design.
+- Real people's names and handles: any public figure mentioned in the post.
+
+**What the scanner does not catch — and does not need to**
+
+- Generic topic words. A post about satellite internet, rocket launches, or orbital mechanics maps fine to fictional frame text. The scanner targets *names*, not subjects.
+- Fictional names the bot itself generates. Those are the point.
+
+**The fallback:** when a brand name is detected, the bot maps the post's underlying topic — "a launch delivering satellites to orbit" becomes a fictional frame about orbital deployment, with a fictional unit code and an original crest. The post's substance becomes the frame's world; the post's brand becomes nothing.
+
+**Rights-reserved note:** WingXAI does not currently hold rights to any third-party brand, franchise, or likeness. If a rights holder ever grants permission, this section and the negative prompt would be revised accordingly. Until then, fictional everything is the only safe default.
 
 ---
 
@@ -426,3 +450,5 @@ Authorization: Bearer ${WINGXAI_API_KEY}
 - [ ] License id for the provenance block (section 6)
 - [ ] Brand or legal reviewer sign-off on the crest library (section 1.7)
 - [ ] Owner's list of signature head and wing shapes, once drawn (section 1.6)
+- [ ] Brand-name scanner implementation: hardcoded list, regex patterns, or an external list service? (section 5.2)
+- [ ] Does the scanner block the post or just strip the brand and map the topic? (section 5.2)
