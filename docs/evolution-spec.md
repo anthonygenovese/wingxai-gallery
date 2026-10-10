@@ -3,7 +3,7 @@
 **Status:** draft · **Card version:** 0.4 · **Last updated:** 2026-10-10
 **Owner:** @anthonygenovese · **Gallery:** https://wingxai.gallery
 
-> How it works: someone drops an X post into the bot. The bot extracts stats and key details, maps them to visual parameters, and generates a new WingXAI Prototype Frame card — the character evolves one generation per post. The background shifts with every post, so the card becomes a visual diary of what the community is sharing. The quote on the card is also the audio line: same text, spoken by TTS, tied to the frame's light color.
+> How it works: someone drops an X post into the bot. The bot extracts stats and key details, maps them to visual parameters, and generates a new WingXAI Prototype Frame card — the character evolves one generation per post. The background shifts with every post, so the card becomes a visual diary of what the community is sharing. The quote on the card is also the audio line: same text, spoken by TTS, tied to the frame's light color. The seed frame (WX-00) is the base model every generation traces back to — see `docs/seed-frame.md`.
 
 ---
 
@@ -99,12 +99,12 @@ Then run the belongs-in-the-family checklist from the style card before publishi
 
 ### 3.1 Reference images
 
-Two things have to happen for a render: the **prompt** and a **reference image**. The prompt carries the style language and the frame-specific idea; the reference image anchors the silhouette so generations stay consistent with the family across the lineage.
+Two things have to happen for a render: the **prompt** and a **reference image**. The prompt carries the style language and the frame-specific idea; the reference image anchors the silhouette so generations stay consistent with the family across the lineage. Full rules in `docs/seed-frame.md`.
 
-- **Source:** the previous generation's frame image (the lineage's last unit code), or one of the committed placeholder frames in `/gallery/public/assets/` when starting a new lineage. Never a mood-board image, never a franchise image, never a single external reference fed at high strength.
+- **Source:** the previous generation's frame image (the lineage's last unit code), or the seed frame **WX-00** when starting a new lineage, when the previous generation failed the family check, or when the previous reference is missing. Never a mood-board image, never a franchise image, never a single external reference fed at high strength.
 - **Strength:** low. Several references at once if available, none dominating. The team default is still undecided — see open decisions.
 - **Change rule:** the new generation must differ from the reference in at least three things — pose, head design, wing shape, crest design, camera angle, or card contents. If a side-by-side reads as a copy or edit, rework before publishing.
-- **Why it matters:** without a reference, each generation drifts. With one, the lineage reads as one character evolving instead of a series of unrelated robots.
+- **Why it matters:** without a reference, each generation drifts. With one, the lineage reads as one character evolving instead of a series of unrelated robots. The seed frame is what makes the chain recoverable.
 
 ---
 
@@ -117,6 +117,7 @@ Every generation appends one record to the lineage log (a JSON file or sheet, TB
   "generation": 16,
   "unit_code": "WX-16",
   "source_url": "https://x.com/...",
+  "reference_used": "WX-15",
   "extracted": { "views": 1200, "likes": 84, "topic": "...", "tone": "technical", "sentiment": "neutral" },
   "mapped": { "mode": "detailed", "scheme": "carbon", "light": "green", "background": "hangar interior at dusk" },
   "frame_card": { "name": "...", "pilot": "...", "role": "...", "quote": "..." },
@@ -126,7 +127,7 @@ Every generation appends one record to the lineage log (a JSON file or sheet, TB
 }
 ```
 
-Scrolling the lineage is the story: each post the community shares leaves a visible mark on the frame and its world.
+The `reference_used` field records which frame anchored the render, so the chain is auditable. Scrolling the lineage is the story: each post the community shares leaves a visible mark on the frame and its world.
 
 ---
 
@@ -174,3 +175,4 @@ This makes audio feel like an event. A frame that speaks is memorable; a frame t
 - [ ] Team default for image-reference strength, if references are used at all?
 - [ ] TTS engine and voice library for red and green channels?
 - [ ] Does the random audio trigger use a hash of the unit code or a true random draw?
+- [ ] Seed frame questions — see `docs/seed-frame.md` section 5: real render vs placeholder, how many references at once, auto-retry vs manual review on failed generations, reference URL vs unit code in the log?
