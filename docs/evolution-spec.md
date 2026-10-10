@@ -3,13 +3,13 @@
 **Status:** draft · **Card version:** 0.4 · **Last updated:** 2026-10-10
 **Owner:** @anthonygenovese · **Gallery:** https://wingxai.gallery
 
-> How it works: someone drops an X post into the bot. The bot extracts stats and key details, maps them to visual parameters, and generates a new WingXAI Prototype Frame card — the character evolves one generation per post. The background shifts with every post, so the card becomes a visual diary of what the community is sharing.
+> How it works: someone drops an X post into the bot. The bot extracts stats and key details, maps them to visual parameters, and generates a new WingXAI Prototype Frame card — the character evolves one generation per post. The background shifts with every post, so the card becomes a visual diary of what the community is sharing. The quote on the card is also the audio line: same text, spoken by TTS, tied to the frame's light color.
 
 ---
 
 ## 0. The loop in one paragraph
 
-A post comes in. The bot reads it and pulls out the numbers — views, likes, replies, reposts, timestamp — plus the substance: topic, tone, sentiment, key details. Those numbers and that substance become dials on the frame: engagement drives threat and light, topic drives mode and background, sentiment drives palette. The generator renders a new card with the HUD overlay baked in — stats in one corner, key details as text, the evolved frame in the center. Each generation is a new unit code, so the lineage is traceable: WX-01, WX-16, WX-31.
+A post comes in. The bot reads it and pulls out the numbers — views, likes, replies, reposts, timestamp — plus the substance: topic, tone, sentiment, key details. Those numbers and that substance become dials on the frame: engagement drives threat and light, topic drives mode and background, sentiment drives palette. The generator renders a new card with the HUD overlay baked in — stats in one corner, key details as text, the evolved frame in the center. Each generation is a new unit code, so the lineage is traceable: WX-01, WX-16, WX-31. The quote is written once and serves double duty: it sits in the quote box on the card, and it is the line the TTS voice speaks when audio fires.
 
 **Three words:** *ingest · evolve · render*
 **Never:** real people's names, likenesses, or handles on the card; real company or brand affiliations; real government seals; copies of existing mecha or anime characters; rust or salvaged wear; cute toy plastic; organic flesh; rainbow or neon palettes.
@@ -97,6 +97,15 @@ Build the prompt as: base prompt + scheme + light + mode modifier + background +
 
 Then run the belongs-in-the-family checklist from the style card before publishing. If a side-by-side with the closest reference reads as a copy, rework.
 
+### 3.1 Reference images
+
+Two things have to happen for a render: the **prompt** and a **reference image**. The prompt carries the style language and the frame-specific idea; the reference image anchors the silhouette so generations stay consistent with the family across the lineage.
+
+- **Source:** the previous generation's frame image (the lineage's last unit code), or one of the committed placeholder frames in `/gallery/public/assets/` when starting a new lineage. Never a mood-board image, never a franchise image, never a single external reference fed at high strength.
+- **Strength:** low. Several references at once if available, none dominating. The team default is still undecided — see open decisions.
+- **Change rule:** the new generation must differ from the reference in at least three things — pose, head design, wing shape, crest design, camera angle, or card contents. If a side-by-side reads as a copy or edit, rework before publishing.
+- **Why it matters:** without a reference, each generation drifts. With one, the lineage reads as one character evolving instead of a series of unrelated robots.
+
 ---
 
 ## 4. The lineage log
@@ -111,6 +120,7 @@ Every generation appends one record to the lineage log (a JSON file or sheet, TB
   "extracted": { "views": 1200, "likes": 84, "topic": "...", "tone": "technical", "sentiment": "neutral" },
   "mapped": { "mode": "detailed", "scheme": "carbon", "light": "green", "background": "hangar interior at dusk" },
   "frame_card": { "name": "...", "pilot": "...", "role": "...", "quote": "..." },
+  "audio": { "quote": "...", "tts_voice": "red | green", "triggered": true, "duration_sec": 2.4 },
   "image_url": "/assets/wx-16-card.svg",
   "created_at": "2026-10-10T..."
 }
@@ -120,10 +130,47 @@ Scrolling the lineage is the story: each post the community shares leaves a visi
 
 ---
 
-## 5. Open decisions
+## 5. Audio spec
+
+The quote on the card is the audio line. Same text, two jobs: printed in the quote box, spoken by TTS when audio fires. This ties the sound directly to the visual DNA — a red-lit frame speaks in a red voice, a green-lit frame in a green one.
+
+### 5.1 The binding rule
+
+| Frame light | TTS voice |
+|---|---|
+| Signal red `#FF1E2D` | low, gravelly, red-channel voice |
+| Signal green `#2BFF6A` | higher, cleaner, green-channel voice |
+| Red-green split | alternates per line, or picks the dominant zone |
+
+The voice is not a separate creative choice — it is derived from the frame's light the same way the HUD color is. One dial, two outputs.
+
+### 5.2 Length and cadence
+
+The quote must fit a **15-second window** at normal TTS pace (~130–150 words per minute), which gives roughly 30–38 words of headroom. In practice, quotes run 5–9 words — two to four seconds spoken — which leaves silence before and after. That silence is the point: the line lands like a verdict, not a paragraph.
+
+Cadence rule: short punchy fragments. "The line holds. The ledger doesn't." Six words, two beats. Longer sentences dilute it. Test each quote by reading it aloud at normal speed before it ships.
+
+### 5.3 Trigger
+
+Audio is **always available, randomly triggered**. The quote is baked into every generation as card text. The TTS fires on roughly one in three generations, chosen at random (or by a simple hash of the unit code so it is reproducible). When it does not fire, the card still carries the quote silently — the reader can imagine the voice.
+
+This makes audio feel like an event. A frame that speaks is memorable; a frame that always speaks is wallpaper.
+
+### 5.4 What the audio never does
+
+- Never speaks a real person's name, handle, or quote
+- Never reads the post's text verbatim
+- Never uses franchise names or existing character lines
+- Never exceeds the 15-second window
+
+---
+
+## 6. Open decisions
 
 - [ ] Where does the lineage log live — JSON in the repo, or a sheet?
 - [ ] Does the bot auto-generate on every post, or wait for a confirm?
 - [ ] Should high-engagement generations unlock a new armor scheme?
 - [ ] Does the barcode encode the gallery URL or the source post URL?
-- [ ] Team default for image-reference strength, if references are used at all.
+- [ ] Team default for image-reference strength, if references are used at all?
+- [ ] TTS engine and voice library for red and green channels?
+- [ ] Does the random audio trigger use a hash of the unit code or a true random draw?
