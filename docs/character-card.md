@@ -1,7 +1,7 @@
 # WingXAI Style Card: Prototype Frame Robot Monsters
 
 **Brand:** WingXAI · **Gallery:** https://wingxai.gallery · **MCP endpoint (planned):** https://wingxai.gallery/mcp
-**Card version:** 0.4 (draft, original style language) · **Last updated:** 2026-10-09 · **Owner:** @________
+**Card version:** 0.5 (draft, original style language) · **Last updated:** 2026-10-10 · **Owner:** @________
 
 > How to use this card: this card defines an **original style language**, not any existing character. The reference images were a mood board (section 1.0). No frame made with this card may depict, name, or be credited to a real person, and none may reproduce a copyrighted character design or a real seal. Everything in `[brackets]` is still undecided. Hex values marked *approx.* are close matches to the mood board; confirm them with an eyedropper. The test: a stranger reads only this card, generates one original frame, and it still looks like it belongs in the family.
 
@@ -22,7 +22,7 @@
 
 The style was distilled from a private mood board. It held the owner's own Prototype Frame art and blank frame template, plus outside examples that included real people credited as pilots, real company affiliations, seal-like emblems, and designs that closely follow a well-known copyrighted mecha franchise.
 
-This card keeps only the transferable visual language and the owner's original template. It drops every real name, handle, company affiliation, seal, and franchise design. The mood board images aren't part of the card and shouldn't be shared as WingXAI art or style references. See section 1.9 for how to work from references the right way.
+This card keeps only the transferable visual language and the owner's original template. It drops every real name, handle, company affiliation, seal, and franchise design. The mood board images aren't part of the card and shouldn't be shared as WingXAI art or style references. See section 1.9 for how to work from references the right way, and section 1.10 for how to use real kit photos specifically.
 
 ### 1.1 Armor schemes
 
@@ -137,7 +137,7 @@ The owner's blank Prototype Frame template is the **canonical layout** for prese
 | Dossier | **Class** | `[Class name or tier]` |
 | Quote box | **Quote** | Original line written for the frame. Never a real person's quote |
 | Systems | **Checklist** | Fictional systems, e.g. `☑ ARMOR ☑ WINGS ☑ OPTICS ☐ [____]` |
-| Footer | **Unit code + barcode** | `WX-[##]` with a decorative barcode. [Should the barcode encode the gallery URL? ________] |
+| Footer | **Unit code + barcode** | `WX-[##]` with a decorative barcode. [Should the barcode encode the gallery URL? ________]
 
 ### 2.2 Card rules
 
@@ -217,9 +217,57 @@ Mood board images teach the **language** of the style. They are not pictures to 
 
 ---
 
+## 5.1 Using real kit photos as references (required)
+
+Real plastic model kit photos — Gunpla, Real Grade, Master Grade, and similar — are the most useful reference material the owner has, because they show actual panel construction, joint articulation, and how light hits molded surfaces. They are also the highest-risk material, because every kit is a copyrighted character design. This section governs how to use them.
+
+**What kit photos are for**
+
+- **Panel language:** how armor plates overlap, where seams and vents sit, how joints articulate.
+- **Surface detail:** panel-line density, how edges catch light, how decals and stickers read at a glance.
+- **Construction logic:** where thrusters, vents, and weapon hardpoints attach to the body.
+- **Pose vocabulary:** dynamic stances, weapon-holding grips, wing-spread angles that read as heroic.
+- **Color-scheme inspiration:** white-and-gold, white-and-red, dark-and-red layouts as general ideas — never as the frame's actual scheme.
+
+**What kit photos are never for**
+
+- The kit's specific head, face mask, or visor design.
+- The kit's exact wing shape, feather layout, or wing-edge profile.
+- The kit's chest vents, emblem placement, or crest design.
+- The kit's color scheme as-is (a frame that is "the same colors as [kit]" is a copy).
+- The kit's name, model number, grade, or series designation anywhere in the prompt, card, or art.
+- The kit photo as a direct image-to-image source at any strength.
+
+**The three-change rule, applied to kits**
+
+Every generation that draws on a kit photo must differ from that kit in at least three of: head design, wing shape, crest design, chest layout, color scheme, pose, or camera angle. Changing only the color is not enough. Changing the head and the wings but keeping the chest vents is not enough.
+
+**The side-by-side test, applied to kits**
+
+Place the generated frame next to the kit photo it drew from. If a stranger would say "that's the same robot with different paint," it fails. If they would say "that's a different robot that feels related," it passes. When in doubt, rework.
+
+**Prompt hygiene for kit-derived generations**
+
+- Describe the style in words. "Tall armored mobile suit with layered mechanical wings" is fine. "Wing Zero but red" is not.
+- Franchise and kit names appear in the **negative prompt only**, to steer away: `gundam, mobile suit gundam, wing zero, deathscythe, shenlong, existing anime character, franchise logo, copied character design`.
+- Never put a kit or franchise name in a positive prompt, even softened ("in the style of," "inspired by [kit]").
+- The base prompt and negative prompt in section 3 already carry the right language. Do not add kit names to them.
+
+**Storage and sharing**
+
+- Kit photos stay in the owner's private reference folder. They are not committed to the repo, not posted as WingXAI art, and not shared as style references.
+- The style card, the seed frame, and the gallery carry only original WingXAI work.
+- If a generation is published, its provenance block (see section 6) must say `references: mood board, style only` — never `references: [kit name]`.
+
+**The family signatures that no kit has**
+
+A frame is WingXAI, not a kit, when it carries all three: carbon fiber weave texture, red or green LED strips, and an original gold crest. Any one of those alone is not enough. All three together, plus original head, wing, and chest designs, is the whole test.
+
+---
+
 ## 6. MCP integration
 
-> **Status:** the endpoint `https://wingxai.gallery/mcp` is planned and **not deployed yet**. Calls will fail until it's live. The tool names and schemas below are a proposed contract; finalize them before launch.
+> **Status:** the endpoint `https://wingxai.gallery/mcp` is planned and is **not deployed yet**. Calls will fail until it's live. The tool names and schemas below are a proposed contract; finalize them before launch.
 
 ### 6.1 Connect
 
@@ -249,7 +297,8 @@ Transport: Streamable HTTP (MCP).
       "type": "object",
       "properties": {
         "query": { "type": "string", "description": "Free-text search, e.g. 'wings spread green edge lights'" },
-        "tags": { "type": "array", "items": { "type": "string" }, "description": "Style tags, e.g. ['wings-spread','gold-crest','frame-card']" },
+        "tags": { "type": "array", "items": { "type": "string" },
+        "description": "Style tags, e.g. ['wings-spread','gold-crest','frame-card']" },
         "mode": { "type": "string", "enum": ["cute", "menacing", "minimal", "detailed", "parade", "gallery-card"] },
         "scheme": { "type": "string", "enum": ["carbon", "parade"] },
         "light": { "type": "string", "enum": ["red", "green", "red-green"] },
@@ -277,11 +326,10 @@ Transport: Streamable HTTP (MCP).
       "type": "object",
       "properties": {
         "id": { "type": "string" },
-        "size": { "type": "string", "enum": ["thumb", "medium", "full"], "default": "medium" },
-        "format": { "type": "string", "enum": ["png", "jpg", "webp"], "default": "png" },
+        "size": { "type": "string", "enum": ["thumb", "medium", "full"] },
+        "format": { "type": "string", "enum": ["png", "jpg", "webp"] },
         "card": { "type": "boolean", "default": true, "description": "Include the frame card layout" }
-      },
-      "required": ["id"]
+      }
     }
   },
   {
@@ -315,231 +363,66 @@ Authorization: Bearer ${WINGXAI_API_KEY}
   "method": "tools/call",
   "params": {
     "name": "search_monsters",
-    "arguments": { "query": "wings spread", "light": "red-green", "limit": 2 }
+    "arguments": { "query": "wings spread green edge lights" }
   }
 }
 ```
 
-Response (example data):
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": {
-    "content": [{ "type": "text", "text": "2 frames found" }],
-    "structuredContent": {
-      "results": [
-        {
-          "id": "WX-[##]",
-          "name": "[Frame name]",
-          "class": "[Class]",
-          "scheme": "carbon",
-          "light": "red-green",
-          "tags": ["carbon-fiber", "wings-spread", "gold-crest", "green-wing-edges", "red-chest-seams", "frame-card"],
-          "thumb_url": "https://wingxai.gallery/assets/WX-[##]/thumb.webp",
-          "page_url": "https://wingxai.gallery/m/WX-[##]"
-        },
-        {
-          "id": "WX-[##]",
-          "name": "[Frame name]",
-          "class": "[Class]",
-          "scheme": "parade",
-          "light": "red-green",
-          "tags": ["parade", "wings-spread", "gold-crest", "frame-card"],
-          "thumb_url": "https://wingxai.gallery/assets/WX-[##]/thumb.webp",
-          "page_url": "https://wingxai.gallery/m/WX-[##]"
-        }
-      ],
-      "next_cursor": "eyJvZmZzZXQiOjJ9"
-    }
-  }
-}
-```
-
-**Get metadata**
+**Get monster**
 
 ```json
 {
   "jsonrpc": "2.0",
   "id": 2,
   "method": "tools/call",
-  "params": { "name": "get_monster", "arguments": { "id": "WX-[##]" } }
-}
-```
-
-Response (example data, all names fictional placeholders):
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 2,
-  "result": {
-    "structuredContent": {
-      "id": "WX-[##]",
-      "series": "Prototype Frame",
-      "card_version": "0.4",
-      "scheme": "carbon",
-      "light": "red-green",
-      "mode": "gallery-card",
-      "frame_card": {
-        "name": "[Frame name]",
-        "pilot": "[Fictional callsign]",
-        "role": "[Role]",
-        "handle": "@[wingxai_frame_handle]",
-        "unit_code": "WX-[##]",
-        "class": "[Class]",
-        "quote": "[Original quote written for this frame]",
-        "systems": [
-          { "name": "ARMOR", "status": "ok" },
-          { "name": "WINGS", "status": "ok" },
-          { "name": "OPTICS", "status": "ok" }
-        ],
-        "affiliation": "[Fictional affiliation]"
-      },
-      "prompt": "[WingXAI style] original monumental robot frame, carbon fiber weave armor, ... green LED wing edges, red LED chest seams, original gold brass mechanical eagle crest ...",
-      "negative_prompt": "real person, real politician, ..., official seal, gundam, existing anime character, ...",
-      "tags": ["carbon-fiber", "wings-spread", "gold-crest", "green-wing-edges", "red-chest-seams", "frame-card"],
-      "palette": {
-        "carbon": "#16181B",
-        "plate": "#3A3F45",
-        "signal_red": "#FF1E2D",
-        "signal_green": "#2BFF6A",
-        "brass": "#C9A227"
-      },
-      "provenance": {
-        "original_design": true,
-        "real_people": false,
-        "franchise_designs": false,
-        "references": "mood board, style only"
-      },
-      "model": "[generator + version]",
-      "seed": null,
-      "created_at": "2026-10-09T13:29:00Z",
-      "license": "[license id]",
-      "credit_line": "WX-[##] Prototype Frame by WingXAI (wingxai.gallery)",
-      "assets": {
-        "thumb": "https://wingxai.gallery/assets/WX-[##]/thumb.webp",
-        "full": "https://wingxai.gallery/assets/WX-[##]/full.png",
-        "full_no_card": "https://wingxai.gallery/assets/WX-[##]/full-nocard.png"
-      },
-      "page_url": "https://wingxai.gallery/m/WX-[##]"
-    }
+  "params": {
+    "name": "get_monster",
+    "arguments": { "id": "WX-01" }
   }
 }
 ```
 
-**Get asset**
+**Get monster asset**
 
 ```json
 {
   "jsonrpc": "2.0",
   "id": 3,
   "method": "tools/call",
-  "params": { "name": "get_monster_asset", "arguments": { "id": "WX-[##]", "size": "full", "format": "png", "card": false } }
-}
-```
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 3,
-  "result": {
-    "structuredContent": {
-      "url": "https://wingxai.gallery/assets/WX-[##]/full-nocard.png",
-      "width": "[px]",
-      "height": "[px]",
-      "expires_at": "[ISO time, if signed URLs]"
-    }
+  "params": {
+    "name": "get_monster_asset",
+    "arguments": { "id": "WX-01", "size": "full", "format": "png", "card": true }
   }
 }
 ```
 
-**Errors (proposed)**
+**Get style card**
 
-| Code | Meaning |
-|---|---|
-| `-32602` | Bad arguments (unknown unit code, bad enum) |
-| `429` HTTP | Rate limited; honor `Retry-After` |
-| `401` HTTP | Missing or invalid key (if keys are required) |
-
-### 6.4 Agent recipe: generate on-style
-
-1. Call `get_style_card` and take the base prompt, negative prompt, the mecha influence and heraldry rules, the frame card layout, and the mode modifiers.
-2. Optionally call `search_monsters` for 2–3 reference frames in the target mode, scheme, or light.
-3. Build the prompt as base prompt + scheme + light + mode modifier + the frame-specific idea. Add the frame card add-on for gallery posts.
-4. Fill the frame card with fictional values only.
-5. Never add a real person, real company, real seal, or franchise name or character to the positive prompt or the card.
-6. Self-check against the checklist in section 8 before publishing.
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 4,
+  "method": "tools/call",
+  "params": {
+    "name": "get_style_card",
+    "arguments": { "version": "latest" }
+  }
+}
+```
 
 ---
 
-## 7. Usage guidelines
+## 7. Open decisions
 
-### 7.1 Attribution
-
-- **Using a gallery frame (as-is or edited):** `WX-[##] Prototype Frame by WingXAI. wingxai.gallery/m/WX-[##]`
-- **Creating your own frame in the WingXAI style:** `Made in the WingXAI style. wingxai.gallery`
-- **On X:** tag [@handle] and use [#hashtag].
-- Keep the credit visible near the image (caption, alt text, or description), not only in file metadata.
-- Don't give fan-made frames official `WX-` unit codes. [Fan code format, e.g. `FX-##`: ________]
-- [Can people use the "WingXAI" or "Prototype Frame" names in their own titles? ________]
-- Fan creators may use the frame card layout for fan frames: [Yes / No / With credit: ________]
-
-### 7.2 License and permitted use
-
-| Use | Allowed? |
-|---|---|
-| Personal / fan art | [Yes] |
-| Social posts with credit | [Yes] |
-| Commercial use (merch, ads, NFTs) | [Ask / license required / No] |
-| Training AI models on gallery images | [ ] |
-| Claiming a frame as your original design | No |
-| Depicting, naming, or crediting a real person | No |
-| Real companies, brands, or products as affiliations | No |
-| Reproducing a real government seal or insignia | No (see 1.7) |
-| Reproducing a copyrighted mecha or anime character | No (see 1.6) |
-| Sharing mood board images as WingXAI art | No (see 5) |
-
-License: [e.g. CC BY-NC 4.0 or custom terms at wingxai.gallery/license]
-
-### 7.3 Rate limits (set before launch)
-
-| Tier | Requests/min | Requests/day | Asset downloads/day |
-|---|---|---|---|
-| Anonymous | [ ] | [ ] | [ ] |
-| Keyed creator | [ ] | [ ] | [ ] |
-| Partner | [ ] | [ ] | [ ] |
-
-- Cache `get_style_card` and metadata; don't re-fetch on every generation.
-- On a `429`, back off using `Retry-After`.
-- No bulk scraping of the gallery outside the MCP tools.
-
----
-
-## 8. Belongs-in-the-family checklist
-
-**Hard rules (any fail means it's out):**
-- [ ] No real person's name, likeness, handle, quote, or pilot credit
-- [ ] No real company, brand, or product affiliation
-- [ ] Crest is an original design, with no real seal or government insignia (1.7)
-- [ ] Not a reproduction or close trace of any existing mecha or anime character (1.6)
-- [ ] Not a copy or close edit of any single reference image (5)
-
-**Style score.** A frame belongs if it gets **at least 6/8**, and must include the first three:
-- [ ] LED eyes or visor in red or green (no other light colors)
-- [ ] Large mechanical wings with carbon fiber texture
-- [ ] Original gold or brass eagle crest
-- [ ] Carbon fiber weave visible (body, or joints and frame on Parade)
-- [ ] Geometric paneling in Carbon or Parade scheme
-- [ ] LED strips along seams, joints, or wing edges
-- [ ] Monumental, heroic pose or low camera angle
-- [ ] Prototype Frame identity: `WX-[##]` code or the canonical frame card
-
----
-
-## 9. Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 0.1 | 2026-10-09 | First draft template with an invented starter direction |
-| 0.2 | 2026-10-09 | Retargeted to the reference art: carbon fiber, red LED lighting, gold eagle heraldry, HUD, Prototype Frame branding |
-| 0.3 | 2026-10-09 | Reframed references as a mood board, removed specific unit and person ties, made original heraldry a hard rule, added reference-use rules |
-| 0.4 | 2026-10-09 | Removed all real names and affiliations, added the mecha influence rule, green LED lighting and the Parade scheme, and made the owner's blank frame template the canonical card layout |
+- [ ] Head and limb ratios from the owner's frames (section 1.4)
+- [ ] Do red and green mean anything — class, faction, mode? (section 1.2)
+- [ ] Battle-damage variants allowed? (section 1.5)
+- [ ] Rendering style: cinematic 3D render / hyperreal concept art / other (section 1.5)
+- [ ] Exact block positions and sizes from the owner's template file (section 2.2)
+- [ ] Template file location, source of truth (section 2.2)
+- [ ] Should the barcode encode the gallery URL or the source post URL? (section 2.1)
+- [ ] Team default for reference strength (section 5, rule 2)
+- [ ] Is read access to the MCP public, or does it need an API key? (section 6.1)
+- [ ] License id for the provenance block (section 6)
+- [ ] Brand or legal reviewer sign-off on the crest library (section 1.7)
+- [ ] Owner's list of signature head and wing shapes, once drawn (section 1.6)
