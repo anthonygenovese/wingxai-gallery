@@ -105,12 +105,21 @@ A domain swap (`wingxai.gallery` → `wingx.gallery`, or anything else) is mostl
 - **The visual DNA.** Carbon fiber, red or green LED strips, original gold crest. The style survives any rename.
 - **The frame card layout.** The owner's original template is the canonical layout; a rename does not redesign it.
 
+### Registered domains
+
+| Domain | Status | Role |
+|---|---|---|
+| `wingxai.gallery` | Owned, not yet pointed at Vercel | Primary |
+| `wingx.gallery` | Owned (registered 2026-10-10), not pointed anywhere | Fallback — the natural short form, ready for a rename swap |
+
+The fallback sits idle in the registrar account. It is not attached to any Vercel project and does not resolve to anything. That is intentional: it is insurance, not a second site.
+
 ### Pre-launch checklist
 
 Before the first real deployment, confirm:
 
-- [ ] The intended domain is owned and not pointed at anything else.
-- [ ] A fallback domain is registered or at least searched, in case the primary is unavailable or the brand renames.
+- [x] The intended domain is owned and not pointed at anything else. (`wingxai.gallery`)
+- [x] A fallback domain is registered. (`wingx.gallery`, registered 2026-10-10)
 - [ ] `WINGXAI_PUBLIC_ORIGIN` is set correctly on the Vercel project (or left at the safe default).
 - [ ] The rename file list above has been reviewed so a future rename is a known, bounded task.
 - [ ] The unit code pattern `WX-[##]` is accepted as permanent.
