@@ -3,15 +3,14 @@ import { CatalogInputError } from './catalog.js';
 import { PROVENANCE } from './provenance.js';
 
 /**
- * Structured view of docs/character-card.md (card version 0.4).
+ * Structured view of docs/character-card.md (card version 0.6).
  * The markdown file is copied into the payload when it can be read.
  * Bracketed fields are still undecided in the card; they are not filled in here.
- *
  * NOT LIVE: mcp_endpoint.live is false. https://wingxai.gallery/mcp is not deployed.
  */
 
-const CARD_VERSION = '0.4';
-const cardUrl = new URL('../../docs/character-card.md', import.meta.url);
+const CARD_VERSION = '0.6';
+const cardUrl = new URL('..//docs/character-card.md', import.meta.url);
 
 const BASE_PROMPT = `[WingXAI style] original monumental robot frame, [carbon fiber weave armor with dark
 gunmetal geometric panels | white armor with gold trim and carbon fiber joints], large
@@ -25,7 +24,7 @@ const FRAME_CARD_ADDON =
   'presented on a sci-fi dossier card, "WINGXAI · PROTOTYPE FRAME" header, fictional name and callsign fields, unit code "WX-[##]", class field, quote box, systems checklist, barcode footer';
 
 const NEGATIVE_PROMPT =
-  'real person, real politician, celebrity, public figure likeness, real name, real social media handle, real company logo, brand logo, official seal, presidential seal, great seal of the united states, government insignia, gundam, mobile suit gundam, wing zero, existing anime character, franchise logo, copied character design, cyan or blue lights, rust, salvaged scrap, cute toy, plastic, organic flesh, rainbow colors, cluttered background, tiny unreadable text, watermark';
+  'real person, real politician, celebrity, public figure likeness, real name, real social media handle, real company logo, brand logo, official seal, presidential seal, great seal of the united states, government insignia, gundam, mobile suit gundam, wing zero, deathscythe, shenlong, existing anime character, franchise logo, copied character design, tesla, spacex, starlink, falcon 9, starship, real company name, real product name, cyan or blue lights, rust, salvaged scrap, cute toy, plastic, organic flesh, rainbow colors, cluttered background, tiny unreadable text, watermark';
 
 function loadMarkdown(): { markdown: string | null; markdown_included: boolean; markdown_note?: string } {
   try {
@@ -34,7 +33,7 @@ function loadMarkdown(): { markdown: string | null; markdown_included: boolean; 
     return {
       markdown: null,
       markdown_included: false,
-      markdown_note: 'docs/character-card.md was not readable from this process. Structured fields below still follow card 0.4.',
+      markdown_note: 'docs/character-card.md was not readable from this process. Structured fields below still follow card 0.6.',
     };
   }
 }
@@ -77,10 +76,10 @@ export function styleCardDocument(version: string | undefined): Record<string, u
       },
       {
         name: 'Parade',
+        role: 'ceremonial or hero frames. Inspired by classic white-and-gold mecha schemes, but must use original shapes.',
         base: 'Armor white #E9EAEC approx.',
         plates: 'Carbon black #16181B (joints, inner frame)',
-        trim: 'Brass gold #C9A227',
-        when: 'Ceremonial or hero frames. Inspired by classic white-and-gold mecha schemes, but must use original shapes.',
+        trim: 'Brass gold #C9A227 approx.',
       },
       { name: '[Scheme 3]', base: '[ ]', plates: '[ ]', trim: '[ ]', when: '[ ]' },
     ],
@@ -105,7 +104,8 @@ export function styleCardDocument(version: string | undefined): Record<string, u
     base_prompt: BASE_PROMPT,
     frame_card_addon: FRAME_CARD_ADDON,
     negative_prompt: NEGATIVE_PROMPT,
-    negative_prompt_note: 'Franchise names appear in the negative prompt only, to steer away from them. Never put them in a positive prompt.',
+    negative_prompt_note:
+      'Franchise names and real company names appear in the negative prompt only, to steer away from them. Never put them in a positive prompt. The company-name list covers names that have already appeared in ingested posts and rejected prototypes (RP-01); it is not exhaustive.',
     mecha_influence_rule: {
       summary: 'Classic mecha anime is a general style influence only. Do not reproduce a named character or mecha design.',
       ok: [
@@ -118,8 +118,8 @@ export function styleCardDocument(version: string | undefined): Record<string, u
       not_ok: [
         'Reproducing or closely tracing any existing named character or mecha design, including its exact head, face mask, chest vents, wing shape, or overall layout',
         'Franchise names, model numbers, unit names, or series designations from existing works, in the art, on the HUD, or in prompts',
-        'Prompting for an existing franchise or character by name',
-        'Using a franchise image as a direct image-to-image source',
+        'Prompting for an existing franchise or character by name (no "in the style of [franchise]", "[character name] but…")',
+        'Using a franchise image as a direct image-to-image source at any strength',
       ],
     },
     heraldry_rule: {
@@ -152,13 +152,32 @@ export function styleCardDocument(version: string | undefined): Record<string, u
     ],
     reference_rules: [
       'Describe the style in words and generate from the words.',
-      'If image references are used, use several at low strength. Team default strength is still undecided.',
+      'If image references are used at all, use several at once at low strength. Team default strength is still undecided.',
       'Change at least three things from any reference: pose, head design, wing shape, crest design, camera angle, or card contents.',
       'If a side-by-side comparison reads as a copy, rework it.',
       'Do not post mood board images as WingXAI art.',
     ],
+    brand_name_scanner: {
+      summary:
+        'Required for the reply bot. Before any post is mapped, ingest runs a brand-name scan. If the post contains a real company name, product name, franchise name, or real person name, the bot does not render a frame referencing that name — it maps the post topic to fictional values or skips the post.',
+      catches: [
+        'Real company names: Tesla, SpaceX, Starlink, Falcon, Starship, and any other company appearing in an ingested post.',
+        'Real product and service names: Starlink V3, Starship, any named product or service.',
+        'Franchise and character names: Gundam, Wing Zero, Deathscythe, Shenlong, and any other existing mecha or anime design.',
+        "Real people's names and handles: any public figure mentioned in the post.",
+      ],
+      does_not_catch: [
+        'Generic topic words — satellite internet, rocket launches, orbital mechanics map fine to fictional frame text. The scanner targets names, not subjects.',
+        'Fictional names the bot itself generates.',
+      ],
+      fallback:
+        'When a brand name is detected, the bot maps the post underlying topic to fictional frame text with a fictional unit code and an original crest. The post substance becomes the frame world; the post brand becomes nothing.',
+      rights_reserved_note:
+        'WingXAI does not currently hold rights to any third-party brand, franchise, or likeness. If a rights holder ever grants permission, this section and the negative prompt would be revised accordingly. Until then, fictional everything is the only safe default.',
+    },
     agent_recipe: [
-      'Call get_style_card and take the base prompt, negative prompt, mecha influence and heraldry rules, frame card layout, and mode modifiers.',
+      'Call get_style_card and take the base prompt, negative prompt, mecha influence and heraldry rules, frame card layout, mode modifiers, and the brand-name scanner spec.',
+      'Run the brand-name scanner on the ingested post before mapping. If a real name is detected, map the topic to fictional values or skip.',
       'Optionally call search_monsters for 2–3 reference frames in the target mode, scheme, or light.',
       'Build the prompt as base prompt + scheme + light + mode modifier + the frame-specific idea. Add the frame card add-on for gallery posts.',
       'Fill the frame card with fictional values only.',
@@ -167,7 +186,8 @@ export function styleCardDocument(version: string | undefined): Record<string, u
     ],
     hard_rules: [
       "No real person's name, likeness, handle, quote, or pilot credit",
-      'No real company, brand, or product affiliation',
+      'No real company, brand, or product affiliation — in the art, on the card, or in the prompt',
+      'No franchise name, model number, or character design — franchise names appear in the negative prompt only',
       'Crest is an original design, with no real seal or government insignia',
       'Not a reproduction or close trace of any existing mecha or anime character',
       'Not a copy or close edit of any single reference image',
