@@ -7,12 +7,12 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const project = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const samplesDir = path.join(project, 'samples');
+const project = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'}
+const samplesDir = path.join(project, 'samples'}
 const headers = {
-  'content-type': 'application/json',
-  accept: 'application/json, text/event-stream',
-};
+  'content-type': 'application/json'}
+  accept: 'application/json, text/event-stream'}
+}
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -37,10 +37,10 @@ function startServer(port, env) {
 
 async function stop(child) {
   if (child.exitCode !== null) return;
-  child.kill('SIGTERM');
+  child.kill('SIGTERM'}
   await new Promise((resolve) => {
     const timer = setTimeout(() => {
-      child.kill('SIGKILL');
+      child.kill('SIGKILL'}
       resolve();
     }, 2000);
     child.once('exit', () => {
@@ -55,22 +55,22 @@ async function waitForHealth(port, child) {
   let lastError;
   while (Date.now() < deadline) {
     if (child.exitCode !== null) {
-      throw new Error(`Server exited early.\n${child.logs()}`);
+      throw new Error(`Server exited early.\n${child.logs()}`
     }
     try {
-      const response = await fetch(`http://127.0.0.1:${port}/health`);
+      const response = await fetch(`http://127.0.0.1:${port}/health`}
       if (response.ok) return response.json();
     } catch (error) {
       lastError = error;
     }
     await new Promise((resolve) => setTimeout(resolve, 150));
   }
-  throw new Error(`Timed out waiting for /health (${lastError}).\n${child.logs()}`);
+  throw new Error(`Timed out waiting for /health (${lastError}).\n${child.logs()}`
 }
 
 async function post(port, body, extraHeaders = {}) {
   const response = await fetch(`http://127.0.0.1:${port}/mcp`, {
-    method: 'POST',
+    method: 'POST'}
     headers: { ...headers, ...extraHeaders },
     body: JSON.stringify(body),
   });
@@ -89,101 +89,118 @@ function provenanceOf(payload) {
 }
 
 async function main() {
+  // ---------- brand-scanner unit tests (no server needed) ----------
+  const { spawnSync } = await import('node:child_process'}
+  const unit = spawnSync(path.join(project, 'node_modules', '.bin', 'tsx'), ['src/brand-scanner.test.ts'], {
+    cwd: project,
+    encoding: 'utf8'}
+  });
+  if (unit.status !== 0) {
+    console.error(unit.stdout);
+    console.error(unit.stderr);
+    throw new Error('brand-scanner unit tests failed'}
+  }
+  console.log('ok brand-scanner unit tests'}
+
   const port = 8787;
   const child = startServer(port, {
-    WINGXAI_API_KEY_REQUIRED: 'false',
-    WINGXAI_RATE_LIMIT_PER_MIN: '60',
+    WINGXAI_API_KEY_REQUIRED: 'false'}
+    WINGXAI_RATE_LIMIT_PER_MIN: '60'}
   });
   try {
     const health = await waitForHealth(port, child);
-    assert(health.ok === true && health.live === false, 'health must be ok and not live');
-    const prefixed = await fetch(`http://127.0.0.1:${port}/mcp/health`);
-    assert(prefixed.ok, '/mcp/health should answer');
+    assert(health.ok === true && health.live === false, 'health must be ok and not live'}
+    const prefixed = await fetch(`http://127.0.0.1:${port}/mcp/health`}
+    assert(prefixed.ok, '/mcp/health should answer'}
 
     const sampleFiles = (await readdir(samplesDir)).filter((name) => name.endsWith('.json')).sort();
-    assert(sampleFiles.length === 4, 'expected four tool samples');
+    assert(sampleFiles.length === 4, 'expected four tool samples'}
     for (const file of sampleFiles) {
       const body = JSON.parse(await readFile(path.join(samplesDir, file), 'utf8'));
       const response = await post(port, body);
-      assert(response.status === 200, `${file} HTTP ${response.status}`);
-      assert(response.json.result, `${file} missing result: ${JSON.stringify(response.json).slice(0, 400)}`);
+      assert(response.status === 200, `${file} HTTP ${response.status}`}
+      assert(response.json.result, `${file} missing result: ${JSON.stringify(response.json).slice(0, 400)}`}
       const provenance = provenanceOf(response.json.result.structuredContent);
-      assert(provenance?.source === 'wingxai.gallery', `${file} provenance source`);
-      assert(provenance?.original_design === true, `${file} original_design`);
-      assert(provenance?.real_people === false, `${file} no real people`);
-      assert(provenance?.franchise_designs === false, `${file} no franchise designs`);
-      assert(String(response.json.result.content?.[0]?.text ?? '').includes('no real people'), `${file} text provenance`);
-      console.log(`ok ${file}`);
+      assert(provenance?.source === 'wingxai.gallery', `${file} provenance source`}
+      assert(provenance?.original_design === true, `${file} original_design`}
+      assert(provenance?.real_people === false, `${file} no real people`}
+      assert(provenance?.franchise_designs === false, `${file} no franchise designs`}
+      assert(String(response.json.result.content?.[0]?.text ?? '').includes('no real people'), `${file} text provenance`}
+      console.log(`ok ${file}`}
     }
 
-    const search = await post(port, JSON.parse(await readFile(path.join(samplesDir, 'search_monsters.json'), 'utf8')));
+    const search = await post(port, JSON.parse(await readFile(path.join(samplesDir, 'search_monsters.json'), 'utf8'))}
     const found = search.json.result.structuredContent;
-    assert(found.results.length === 2, `search returned ${found.results.length}`);
-    assert(typeof found.next_cursor === 'string' && found.next_cursor.length > 0, 'search cursor');
+    assert(found.results.length === 2, `search returned ${found.results.length}`}
+    assert(typeof found.next_cursor === 'string' && found.next_cursor.length > 0, 'search cursor'}
 
-    const monster = await post(port, JSON.parse(await readFile(path.join(samplesDir, 'get_monster.json'), 'utf8')));
-    assert(monster.json.result.structuredContent.id === 'WX-01', 'get_monster id');
+    const monster = await post(port, JSON.parse(await readFile(path.join(samplesDir, 'get_monster.json'), 'utf8'))}
+    assert(monster.json.result.structuredContent.id === 'WX-01', 'get_monster id'}
 
-    const asset = await post(port, JSON.parse(await readFile(path.join(samplesDir, 'get_monster_asset.json'), 'utf8')));
+    const asset = await post(port, JSON.parse(await readFile(path.join(samplesDir, 'get_monster_asset.json'), 'utf8'))}
     const assetBody = asset.json.result.structuredContent;
-    assert(assetBody.served_format === 'svg', 'asset serves svg');
-    assert(assetBody.path === '/assets/wx-01.svg', 'asset path');
-    assert(assetBody.card === false, 'asset card flag');
+    assert(assetBody.served_format === 'svg', 'asset serves svg'}
+    assert(assetBody.path === '/assets/wx-01.svg', 'asset path'}
+    assert(assetBody.card === false, 'asset card flag'}
 
-    const card = await post(port, JSON.parse(await readFile(path.join(samplesDir, 'get_style_card.json'), 'utf8')));
+    const card = await post(port, JSON.parse(await readFile(path.join(samplesDir, 'get_style_card.json'), 'utf8'))}
     const cardBody = card.json.result.structuredContent;
-    assert(cardBody.version === '0.4', 'card version');
-    assert(cardBody.mcp_endpoint.live === false, 'card endpoint not live');
-    assert(typeof cardBody.markdown === 'string' && cardBody.markdown.includes('WingXAI'), 'card markdown');
+    assert(cardBody.version === '0.7', 'card version'}
+    assert(cardBody.mcp_endpoint.live === false, 'card endpoint not live'}
+    assert(typeof cardBody.markdown === 'string' && cardBody.markdown.includes('WingXAI'), 'card markdown'}
+    assert(cardBody.negative_prompt.includes('tesla'), 'negative prompt includes tesla'}
+    assert(cardBody.negative_prompt.includes('spacex'), 'negative prompt includes spacex'}
+    assert(cardBody.negative_prompt.includes('starlink'), 'negative prompt includes starlink'}
+    assert(cardBody.brand_name_scanner, 'style card exposes brand_name_scanner'}
 
     const unknown = await post(port, {
-      jsonrpc: '2.0',
+      jsonrpc: '2.0'}
       id: 5,
-      method: 'tools/call',
+      method: 'tools/call'}
       params: { name: 'get_monster', arguments: { id: 'WX-99' } },
     });
-    assert(unknown.json.error?.code === -32602, `unknown id code ${unknown.json.error?.code}`);
+    assert(unknown.json.error?.code === -32602, `unknown id code ${unknown.json.error?.code}`}
 
     const badEnum = await post(port, {
-      jsonrpc: '2.0',
+      jsonrpc: '2.0'}
       id: 6,
-      method: 'tools/call',
+      method: 'tools/call'}
       params: { name: 'search_monsters', arguments: { light: 'blue' } },
     });
-    assert(badEnum.json.error?.code === -32602, `bad enum code ${badEnum.json.error?.code}`);
+    assert(badEnum.json.error?.code === -32602, `bad enum code ${badEnum.json.error?.code}`}
 
     const listed = await post(port, {
-      jsonrpc: '2.0',
+      jsonrpc: '2.0'}
       id: 7,
-      method: 'tools/list',
+      method: 'tools/list'}
       params: {},
     });
     const names = (listed.json.result?.tools ?? []).map((tool) => tool.name).sort();
-    assert(names.join(',') === 'get_monster,get_monster_asset,get_style_card,search_monsters', `tools/list ${names.join(',')}`);
-    console.log('ok tools/list and error codes');
+    assert(names.join(',') === 'get_monster,get_monster_asset,get_style_card,search_monsters', `tools/list ${names.join(',')}`}
+    console.log('ok tools/list and error codes'}
   } finally {
     await stop(child);
   }
 
   const gatedPort = 8788;
   const gated = startServer(gatedPort, {
-    WINGXAI_API_KEY_REQUIRED: 'true',
-    WINGXAI_API_KEY: 'sample-key',
-    WINGXAI_RATE_LIMIT_PER_MIN: '60',
+    WINGXAI_API_KEY_REQUIRED: 'true'}
+    WINGXAI_API_KEY: 'sample-key'}
+    WINGXAI_RATE_LIMIT_PER_MIN: '60'}
   });
   try {
     await waitForHealth(gatedPort, gated);
-    const openHealth = await fetch(`http://127.0.0.1:${gatedPort}/health`);
-    assert(openHealth.status === 200, 'health stays open when the key gate is on');
+    const openHealth = await fetch(`http://127.0.0.1:${gatedPort}/health`}
+    assert(openHealth.status === 200, 'health stays open when the key gate is on'}
     const denied = await post(gatedPort, { jsonrpc: '2.0', id: 1, method: 'tools/list', params: {} });
-    assert(denied.status === 401, `expected 401, got ${denied.status}`);
+    assert(denied.status === 401, `expected 401, got ${denied.status}`}
     const allowed = await post(
       gatedPort,
       { jsonrpc: '2.0', id: 1, method: 'tools/list', params: {} },
       { authorization: 'Bearer sample-key' },
-    );
-    assert(allowed.status === 200 && allowed.json.result, 'bearer key should allow tools/list');
-    console.log('ok api key gate');
+    });
+    assert(allowed.status === 200 && allowed.json.result, 'bearer key should allow tools/list'}
+    console.log('ok api key gate'}
   } finally {
     await stop(gated);
   }
@@ -196,12 +213,12 @@ async function main() {
     const first = await post(limitedPort, body);
     const second = await post(limitedPort, body);
     const third = await post(limitedPort, body);
-    assert(first.status === 200 && second.status === 200, 'first two calls should pass');
-    assert(third.status === 429, `expected 429, got ${third.status}`);
-    assert(third.headers.get('retry-after'), 'Retry-After missing');
-    const health = await fetch(`http://127.0.0.1:${limitedPort}/health`);
-    assert(health.status === 200, 'health is exempt from the rate limit');
-    console.log('ok rate limit');
+    assert(first.status === 200 && second.status === 200, 'first two calls should pass'}
+    assert(third.status === 429, `expected 429, got ${third.status}`}
+    assert(third.headers.get('retry-after'), 'Retry-After missing'}
+    const health = await fetch(`http://127.0.0.1:${limitedPort}/health`}
+    assert(health.status === 200, 'health is exempt from the rate limit'}
+    console.log('ok rate limit'}
   } finally {
     await stop(limited);
   }
