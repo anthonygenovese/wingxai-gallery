@@ -3,8 +3,7 @@ import { matchBrand, scanPost, isClean, BRAND_LIST } from './brand-scanner.js';
 
 // ---------- matchBrand ----------
 
-assert.equal(matchBrand('Tesla is great', 'Tesla'), 'tesla', 'lowercase match works with capital input brand name (normalized)'
-); // note: matchBrand normalizes both sides, so 'Tesla' input -> 'tesla' needle
+assert.equal(matchBrand('Tesla is great', 'Tesla'), 'tesla', 'lowercase match works with capital input brand name (normalized)'); // note: matchBrand normalizes both sides, so 'Tesla' input -> 'tesla' needle
 assert.equal(matchBrand('I love TESLA', 'tesla'), 'tesla', 'case-insensitive');
 assert.equal(matchBrand('teslas everywhere', 'tesla'), null, 'plural does not match (whole-word)');
 assert.equal(matchBrand('nottesla', 'tesla'), null, 'embedded does not match (whole-word)');
@@ -21,7 +20,7 @@ assert.equal(matchBrand('no brands here at all', 'Tesla'), null, 'clean text ret
   const r = scanPost('if you can not Hang \'Em High we can not relate.');
   assert.equal(r.clean, true, 'Halo reply is clean (no real brands)');
   assert.equal(r.hits.length, 0);
-  assert.equal(r.action, 'map', 'clean posts still map normally'
+  assert.equal(r.action, 'map', 'clean posts still map normally');
   assert.equal(r.reason.includes('Safe to map'), true);
 }
 
@@ -30,7 +29,7 @@ assert.equal(matchBrand('no brands here at all', 'Tesla'), null, 'clean text ret
   assert.equal(r.clean, false);
   assert.ok(r.hits.some((h) => h.name === 'Starship'));
   assert.ok(r.categories.includes('company'));
-  assert.equal(r.action, 'map', 'brand detected -> map topic, do not skip by default'
+  assert.equal(r.action, 'map', 'brand detected -> map topic, do not skip by default');
   assert.ok(r.reason.includes('Map the post'));
 }
 
@@ -46,10 +45,10 @@ assert.equal(matchBrand('no brands here at all', 'Tesla'), null, 'clean text ret
     UNIT TYPE: STARLINK V3 PROTOTYPE
   `;
   const r = scanPost(rp01);
-  assert.equal(r.clean, false, 'RP-01 must be flagged'
+  assert.equal(r.clean, false, 'RP-01 must be flagged');
   const names = r.hits.map((h) => h.name).sort();
   for (const expected of ['SpaceX', 'Starlink', 'Starlink V3', 'Starship', 'Falcon 9', 'Falcon']) {
-    assert.ok(names.includes(expected), `RP-01 must catch ${expected}, got ${names.join(',')}`
+    assert.ok(names.includes(expected), `RP-01 must catch ${expected}, got ${names.join(',')}`);
   }
   assert.ok(r.categories.includes('company'));
   assert.ok(r.categories.includes('product'));
@@ -74,11 +73,11 @@ assert.equal(isClean('Tesla stock is up'), false);
 
 // ---------- list integrity ----------
 
-assert.ok(BRAND_LIST.length >= 60, `seed list should be substantial, got ${BRAND_LIST.length}`
+assert.ok(BRAND_LIST.length >= 60, `seed list should be substantial, got ${BRAND_LIST.length}`);
 const names = BRAND_LIST.map((b) => b.name);
-assert.equal(new Set(names).size, names.length, 'no duplicate brand names in the list'
+assert.equal(new Set(names).size, names.length, 'no duplicate brand names in the list');
 for (const b of BRAND_LIST) {
-  assert.ok(['company', 'product', 'franchise', 'person'].includes(b.category), `${b.name} has valid category`
+  assert.ok(['company', 'product', 'franchise', 'person'].includes(b.category), `${b.name} has valid category`);
 }
 
-console.log('brand-scanner tests passed'}
+console.log('brand-scanner tests passed');
